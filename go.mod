@@ -1,4 +1,4 @@
-module mexc-sdk/mexcsdk
+module github.com/niccolofant/mexc-go
 
 go 1.16
 

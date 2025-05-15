@@ -1,45 +1,50 @@
 # mexc-api-sdk
 
- MEXC Official Market and trade api sdk, easy to connection and send request to MEXC open api !
+MEXC Official Market and trade api sdk, easy to connection and send request to MEXC open api !
+
 ## Table of APIS
-  - [Init](#init)
-  - [Market](#market)
-    - [Ping](#ping)
-    - [Check Server Time](#check-server-time)
-    - [Exchange Information](#exchange-information)
-    - [Recent Trades List](#recent-trades-list)
-    - [Order Book](#order-book)
-    - [Old Trade Lookup](#old-trade-lookup)
-    - [Aggregate Trades List](#aggregate-trades-list)
-    - [kline Data](#kline-data)
-    - [Current Average Price](#current-average-price)
-    - [24hr Ticker Price Change Statistics](#24hr-ticker-price-change-statistics)
-    - [Symbol Price Ticker](#symbol-price-ticker)
-    - [Symbol Order Book Ticker](#symbol-order-book-ticker)
-  - [Trade](#trade)
-    - [Test New Order](#test-new-order)
-    - [New Order](#new-order)
-    - [cancel-order](#cancel-order)
-    - [Cancel all Open Orders on a Symbol](#cancel-all-open-orders-on-a-symbol)
-    - [Query Order](#query-order)
-    - [Current Open Orders](#current-open-orders)
-    - [All Orders](#all-orders)
-    - [Account Information](#account-information)
-    - [Account Trade List](#account-trade-list)
+
+- [Init](#init)
+- [Market](#market)
+  - [Ping](#ping)
+  - [Check Server Time](#check-server-time)
+  - [Exchange Information](#exchange-information)
+  - [Recent Trades List](#recent-trades-list)
+  - [Order Book](#order-book)
+  - [Old Trade Lookup](#old-trade-lookup)
+  - [Aggregate Trades List](#aggregate-trades-list)
+  - [kline Data](#kline-data)
+  - [Current Average Price](#current-average-price)
+  - [24hr Ticker Price Change Statistics](#24hr-ticker-price-change-statistics)
+  - [Symbol Price Ticker](#symbol-price-ticker)
+  - [Symbol Order Book Ticker](#symbol-order-book-ticker)
+- [Trade](#trade)
+  - [Test New Order](#test-new-order)
+  - [New Order](#new-order)
+  - [cancel-order](#cancel-order)
+  - [Cancel all Open Orders on a Symbol](#cancel-all-open-orders-on-a-symbol)
+  - [Query Order](#query-order)
+  - [Current Open Orders](#current-open-orders)
+  - [All Orders](#all-orders)
+  - [Account Information](#account-information)
+  - [Account Trade List](#account-trade-list)
+
 ## Init
+
 ```javascript
 //Javascript
-import * as Mexc from 'mexc-sdk';
-const apiKey = 'apiKey'
-const apiSecret = 'apiSecret'
-const client = new Mexc.Spot(apiKey, apiSecret);
+import * as Mexc from "mexc-sdk"
+const apiKey = "apiKey"
+const apiSecret = "apiSecret"
+const client = new Mexc.Spot(apiKey, apiSecret)
 ```
+
 ```go
 // Go
 package main
 import (
 	"fmt"
-	"mexc-sdk/mexcsdk"
+	"github.com/niccolofant/mexc-go"
 )
 
 func main() {
@@ -48,11 +53,13 @@ func main() {
 	spot := mexcsdk.NewSpot(apiKey, apiSecret)
 }
 ```
+
 ```python
 # python
 from mexc_sdk import Spot
 spot = Spot(api_key='apiKey', apiSecret='apiSecret')
 ```
+
 ```java
 // java
 import Mexc.Sdk.*;
@@ -64,6 +71,7 @@ class MyClass {
   }
 }
 ```
+
 ```C#
 // dotnet
 using System;
@@ -86,15 +94,21 @@ namespace dotnet
 ```
 
 ## Market
+
 ### Ping
+
 ```javascript
 client.ping()
 ```
+
 ### Check Server Time
+
 ```javascript
 client.time()
 ```
+
 ### Exchange Information
+
 ```javascript
 client.exchangeInfo(options: any)
 options:{symbol, symbols}
@@ -112,6 +126,7 @@ options:{symbol, symbols}
 ```
 
 ### Recent Trades List
+
 ```javascript
 client.trades(symbol: string, options: any = { limit: 500 })
 options:{limit}
@@ -124,7 +139,9 @@ options:{limit}
  *
  */
 ```
+
 ### Order Book
+
 ```javascript
 client.depth(symbol: string, options: any = { limit: 100 })
 options:{limit}
@@ -139,6 +156,7 @@ options:{limit}
 ```
 
 ### Old Trade Lookup
+
 ```javascript
 client.historicalTrades(symbol: string, options: any = { limit: 500 })
 options:{limit, fromId}
@@ -157,6 +175,7 @@ options:{limit, fromId}
 ```
 
 ### Aggregate Trades List
+
 ```javascript
 client.aggTrades(symbol: string, options: any = { limit: 500 })
 options:{fromId, startTime, endTime, limit}
@@ -178,7 +197,9 @@ options:{fromId, startTime, endTime, limit}
  *
  */
 ```
+
 ### kline Data
+
 ```javascript
 client.klines(symbol: string, interval: string, options: any = { limit: 500 })
 options:{ startTime, endTime, limit}
@@ -207,24 +228,33 @@ options:{ startTime, endTime, limit}
 ```
 
 ### Current Average Price
+
 ```javascript
 client.avgPrice(symbol: string)
 ```
+
 ### 24hr Ticker Price Change Statistics
+
 ```javascript
 client.ticker24hr(symbol?: string)
 ```
+
 ### Symbol Price Ticker
+
 ```javascript
 client.tickerPrice(symbol?: string)
 ```
 
 ### Symbol Order Book Ticker
+
 ```javascript
 client.bookTicker(symbol?: string)
 ```
+
 ## Trade
+
 ### Test New Order
+
 ```javascript
 client.newOrderTest(symbol: string, side: string, orderType: string, options: any = {})
 options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPrice, icebergQty, newOrderRespType, recvWindow}
@@ -285,6 +315,7 @@ options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPri
 ```
 
 ### New Order
+
 ```javascript
 client.newOrder(symbol: string, side: string, orderType: string, options: any = {})
 options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPrice, icebergQty, newOrderRespType, recvWindow}
@@ -345,6 +376,7 @@ options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPri
 ```
 
 ### cancel-order
+
 ```javascript
 client.cancelOrder(symbol: string, options:any = {})
 options:{ orderId, origClientOrderId, newClientOrderId}
@@ -366,10 +398,13 @@ options:{ orderId, origClientOrderId, newClientOrderId}
 ```
 
 ### Cancel all Open Orders on a Symbol
+
 ```javascript
 client.cancelOpenOrders(symbol: string)
 ```
+
 ### Query Order
+
 ```javascript
 client.queryOrder(symbol: string, options:any = {})
 options:{ orderId, origClientOrderId}
@@ -385,11 +420,15 @@ options:{ orderId, origClientOrderId}
  *
  */
 ```
+
 ### Current Open Orders
+
 ```javascript
 client.openOrders(symbol: string)
 ```
+
 ### All Orders
+
 ```javascript
 client.allOrders(symbol: string, options: any = { limit: 500 })
 options:{ orderId, startTime, endTime, limit}
@@ -412,11 +451,15 @@ options:{ orderId, startTime, endTime, limit}
  *
  */
 ```
+
 ### Account Information
+
 ```javascript
 client.accountInfo()
 ```
+
 ### Account Trade List
+
 ```javascript
 client.accountTradeList(symbol: string, options:any = { limit: 500 })
 options:{ orderId, startTime, endTime, fromId, limit}
@@ -442,4 +485,3 @@ options:{ orderId, startTime, endTime, fromId, limit}
  *
  */
 ```
-
